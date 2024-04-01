@@ -159,7 +159,7 @@ ALTER SEQUENCE public.planet_planet_id_seq OWNED BY public.planet.planet_id;
 --
 
 CREATE TABLE public.space_station (
-    station_id integer NOT NULL,
+    space_station_id integer NOT NULL,
     galaxy_id integer NOT NULL,
     name character varying,
     planet_id integer NOT NULL,
@@ -188,7 +188,7 @@ ALTER TABLE public.space_station_station_id_seq OWNER TO freecodecamp;
 -- Name: space_station_station_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
 --
 
-ALTER SEQUENCE public.space_station_station_id_seq OWNED BY public.space_station.station_id;
+ALTER SEQUENCE public.space_station_station_id_seq OWNED BY public.space_station.space_station_id;
 
 
 --
@@ -250,10 +250,10 @@ ALTER TABLE ONLY public.planet ALTER COLUMN planet_id SET DEFAULT nextval('publi
 
 
 --
--- Name: space_station station_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
+-- Name: space_station space_station_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
 --
 
-ALTER TABLE ONLY public.space_station ALTER COLUMN station_id SET DEFAULT nextval('public.space_station_station_id_seq'::regclass);
+ALTER TABLE ONLY public.space_station ALTER COLUMN space_station_id SET DEFAULT nextval('public.space_station_station_id_seq'::regclass);
 
 
 --
@@ -424,11 +424,19 @@ ALTER TABLE ONLY public.planet
 
 
 --
+-- Name: space_station space_station_name_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.space_station
+    ADD CONSTRAINT space_station_name_key UNIQUE (name);
+
+
+--
 -- Name: space_station space_station_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
 --
 
 ALTER TABLE ONLY public.space_station
-    ADD CONSTRAINT space_station_pkey PRIMARY KEY (station_id);
+    ADD CONSTRAINT space_station_pkey PRIMARY KEY (space_station_id);
 
 
 --
@@ -490,4 +498,3 @@ ALTER TABLE ONLY public.star
 --
 -- PostgreSQL database dump complete
 --
-
